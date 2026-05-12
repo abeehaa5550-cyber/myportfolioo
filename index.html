@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="description" content="Abeeha Aamir | AI Automation Developer specializing in AI-powered automation, intelligent workflow orchestration, and integration solutions." />
+    <title>Abeeha Aamir | AI Automation Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            boxShadow: {
+              glow: '0 20px 80px rgba(56, 189, 248, 0.12)',
+            },
+            backgroundImage: {
+              grid: 'radial-gradient(circle at top, rgba(56,189,248,0.12), transparent 32%), radial-gradient(circle at bottom right, rgba(168,85,247,0.09), transparent 28%)',
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      .gradient-ring {
+        background: conic-gradient(from 180deg at 50% 50%, rgba(56, 189, 248, 0.9), rgba(168, 85, 247, 0.8), rgba(59, 130, 246, 0.4));
+      }
+      .form-float::placeholder {
+        color: rgba(148, 163, 184, 0.9);
+      }
+      ::selection {
+        background: rgba(56, 189, 248, 0.28);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
+    <div class="absolute inset-x-0 top-0 h-64 bg-grid opacity-30 pointer-events-none"></div>
+    <div class="relative overflow-hidden">
+      <header class="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 sm:px-10 lg:px-12">
+        <div>
+          <a href="#hero" class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-800/80 text-cyan-300 ring-1 ring-cyan-300/30">AA</span>
+            AI Automation
+          </a>
+        </div>
+        <div class="hidden items-center gap-8 md:flex">
+          <a href="#about" class="text-sm text-slate-300 transition hover:text-white">About</a>
+          <a href="#projects" class="text-sm text-slate-300 transition hover:text-white">Projects</a>
+          <a href="#experience" class="text-sm text-slate-300 transition hover:text-white">Experience</a>
+          <a href="#contact" class="text-sm text-slate-300 transition hover:text-white">Contact</a>
+        </div>
+        <button id="themeToggle" aria-label="Toggle dark mode" class="inline-flex h-11 items-center justify-center rounded-full border border-slate-700 bg-slate-900/80 px-4 text-sm text-slate-200 transition hover:border-slate-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-400/50">
+          Light
+        </button>
+      </header>
+
+      <main class="mx-auto max-w-7xl px-6 pb-24 sm:px-10 lg:px-12">
+        <section id="hero" class="relative overflow-hidden rounded-[2rem] border border-slate-800/90 bg-slate-900/90 px-6 py-16 shadow-glow sm:px-10 lg:px-14">
+          <div class="absolute inset-y-0 right-0 w-full max-w-xl bg-gradient-to-l from-slate-800/90 via-transparent to-transparent opacity-70"></div>
+          <div class="relative grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div class="space-y-6">
+              <p class="inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-4 py-1.5 text-xs uppercase tracking-[0.3em] text-cyan-300">AI Automation Developer</p>
+              <h1 class="max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
+                Delivering AI-powered automation and scalable integration systems for modern teams.
+              </h1>
+              <p class="max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+                I design intelligent automation pipelines, orchestrate reliable workflows, and build production-grade integrations that turn operational complexity into ongoing business value.
+              </p>
+              <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+                <a href="#contact" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">
+                  Let’s build together
+                </a>
+                <a href="#projects" class="inline-flex items-center justify-center rounded-full border border-slate-700 bg-transparent px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-400 hover:text-white">
+                  Featured projects
+                </a>
+              </div>
+            </div>
+
+            <div class="space-y-6 rounded-[1.75rem] border border-slate-800/80 bg-slate-950/70 p-8 shadow-xl backdrop-blur-xl">
+              <div class="flex items-center justify-between text-slate-300">
+                <div>
+                  <p class="text-sm uppercase tracking-[0.2em] text-cyan-300">Featured portal</p>
+                  <p class="mt-3 text-xl font-semibold text-white">AI Automation Portal</p>
+                </div>
+                <div class="inline-flex h-12 w-12 items-center justify-center rounded-3xl bg-slate-900/80 text-cyan-300 ring-1 ring-cyan-400/20">
+                  <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18m9-9H3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+              <p class="text-slate-400">Centralized workflow governance, deployment dashboards, monitoring alerts, and audit-ready automation controls for cross-team operational scale.</p>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="rounded-3xl bg-slate-900 p-4 ring-1 ring-slate-700/70">
+                  <p class="text-sm text-slate-400">Workflows live</p>
+                  <p class="mt-2 text-2xl font-semibold text-white">Dozens</p>
+                </div>
+                <div class="rounded-3xl bg-slate-900 p-4 ring-1 ring-slate-700/70">
+                  <p class="text-sm text-slate-400">Reliability score</p>
+                  <p class="mt-2 text-2xl font-semibold text-white">> 99.7%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" class="mt-20 space-y-8">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p class="text-sm uppercase tracking-[0.28em] text-cyan-300">About me</p>
+              <h2 class="mt-4 text-3xl font-semibold text-white sm:text-4xl">Focused on impactful automation from day one.</h2>
+            </div>
+            <div class="rounded-3xl border border-slate-800/90 bg-slate-900/80 px-5 py-4 text-sm text-slate-300 shadow-lg shadow-slate-950/40">
+              5 months of hands-on experience building AI automation systems for internal teams and operations.
+            </div>
+          </div>
+          <div class="grid gap-8 lg:grid-cols-[0.9fr_0.9fr]">
+            <div class="rounded-[1.75rem] border border-slate-800/90 bg-slate-900/80 p-8 shadow-glow">
+              <p class="text-slate-300 leading-8">
+                I partner with businesses to automate complex workflows using AI, n8n, and modern integration design. My work is grounded in reliability, data-driven orchestration, and error-aware process flows that reduce manual effort and improve operational velocity.
+              </p>
+            </div>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div class="rounded-[1.75rem] border border-slate-800/90 bg-slate-900/80 p-6 text-slate-300">
+                <p class="text-sm uppercase tracking-[0.2em] text-cyan-300">Approach</p>
+                <p class="mt-3 text-base leading-7">Build resilient automations with observability, robust error handling, and seamless deployment practices.</p>
+              </div>
+              <div class="rounded-[1.75rem] border border-slate-800/90 bg-slate-900/80 p-6 text-slate-300">
+                <p class="text-sm uppercase tracking-[0.2em] text-cyan-300">Impact</p>
+                <p class="mt-3 text-base leading-7">Turn strategic automation into measurable outcomes through workflows that support scale, speed, and reliability.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" class="mt-20">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="text-sm uppercase tracking-[0.28em] text-cyan-300">Skills & tools</p>
+              <h2 class="mt-4 text-3xl font-semibold text-white sm:text-4xl">Technical strengths that power automation.</h2>
+            </div>
+          </div>
+          <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            <div class="rounded-[1.75rem] border border-slate-800/90 bg-slate-900/80 p-6">
+              <p class="text-sm uppercase tracking-[0.2em] text-cyan-300">n8n</p>
+              <ul class="mt-6 space-y-3 text-slate-300">
+                <li>Enterprise workflow orchestration</li>
+                <li>Trigger & schedule design</li>
+                <li>Error recovery automation</li>
+              </ul>
+            </div>
+            <div class="rounded-[1.75rem] border border-slate-800/90 bg-slate-900/80 p-6">
+              <p class="text-sm uppercase tracking-[0.2em] text-cyan-300">AI / LLMs</p>
+              <ul class="mt-6 space-y-3 text-slate-300">
+                <li>Prompt engineering</li>
+                <li>Data enrichment with models</li>
+                <li>Automated decision flows</li>
+              </ul>
+            </div>
+            <div class="rounded-[1.75rem] border border-slate-800/90 bg-slate-900/80 p-6">
+              <p class="text-sm uppercase tracking-[0.2em] text-cyan-300">APIs & Integrations</p>
+              <ul class="mt-6 space-y-3 text-slate-300">
+                <li>REST / Webhook automation</li>
+                <li>SaaS integration strategy</li>
+                <li>System event orchestration</li>
+              </ul>
+            </div>
+            <div class="rounded-[1.75rem] border border-slate-800/90 bg-slate-900/80 p-6">
+              <p class="text-sm uppercase tracking-[0.2em] text-cyan-300">Programming</p>
+              <ul class="mt-6 space-y-3 text-slate-300">
+                <li>JavaScript / Node.js</li>
+                <li>Workflow automation scripting</li>
+                <li>Frontend design for dashboards</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" class="mt-20">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="text-sm uppercase tracking-[0.28em] text-cyan-300">Featured projects</p>
+              <h2 class="mt-4 text-3xl font-semibold text-white sm:text-4xl">Project highlights with measurable automation impact.</h2>
+            </div>
+          </div>
+          <div class="mt-10 grid gap-6 xl:grid-cols-2">
+            <article class="group rounded-[2rem] border border-slate-800/90 bg-slate-900/80 p-8 shadow-glow transition hover:-translate-y-1 hover:border-cyan-400/40">
+              <div class="flex items-center justify-between gap-4">
+                <span class="rounded-full bg-cyan-500/10 px-3 py-1.5 text-xs uppercase tracking-[0.25em] text-cyan-300">AI Automation Portal</span>
+                <span class="text-xs uppercase tracking-[0.25em] text-slate-500">Web App</span>
+              </div>
+              <h3 class="mt-6 text-2xl font-semibold text-white">Central hub for automation governance</h3>
+              <p class="mt-4 text-slate-300">Built a production-grade portal for managing deployments, monitoring automation health, and enabling teams to own workflow performance.</p>
+              <ul class="mt-6 space-y-3 text-slate-400">
+                <li><strong class="text-slate-100">Problem:</strong> Disconnected automation execution and limited visibility across teams.</li>
+                <li><strong class="text-slate-100">Solution:</strong> A polished internal portal with dashboards, alerts, and deployment controls.</li>
+                <li><strong class="text-slate-100">Impact:</strong> Faster root cause resolution, improved workflow reliability, and centralized management.</li>
+              </ul>
+            </article>
+
+            <article class="group rounded-[2rem] border border-slate-800/90 bg-slate-900/80 p-8 shadow-glow transition hover:-translate-y-1 hover:border-cyan-400/40">
+              <div class="flex items-center justify-between gap-4">
+                <span class="rounded-full bg-slate-700/70 px-3 py-1.5 text-xs uppercase tracking-[0.25em] text-cyan-300">n8n Workflow</span>
+                <span class="text-xs uppercase tracking-[0.25em] text-slate-500">Operations</span>
+              </div>
+              <h3 class="mt-6 text-2xl font-semibold text-white">Automated cross-departmental approvals</h3>
+              <p class="mt-4 text-slate-300">Designed a workflow that automatically routes approval requests, validates data, and escalates exceptions across multiple systems.</p>
+              <ul class="mt-6 space-y-3 text-slate-400">
+                <li><strong class="text-slate-100">Technologies:</strong> n8n, REST APIs, Slack, email triggers.</li>
+                <li><strong class="text-slate-100">Result:</strong> Reduced manual handoff overhead and accelerated response times.</li>
+              </ul>
+            </article>
+
+            <article class="group rounded-[2rem] border border-slate-800/90 bg-slate-900/80 p-8 shadow-glow transition hover:-translate-y-1 hover:border-cyan-400/40">
+              <div class="flex items-center justify-between gap-4">
+                <span class="rounded-full bg-slate-700/70 px-3 py-1.5 text-xs uppercase tracking-[0.25em] text-cyan-300">Integration</span>
+                <span class="text-xs uppercase tracking-[0.25em] text-slate-500">SaaS</span>
+              </div>
+              <h3 class="mt-6 text-2xl font-semibold text-white">AI-enhanced data sync workflows</h3>
+              <p class="mt-4 text-slate-300">Built sync processes that ingest external signals, enrich them with AI inference, and update operational systems automatically.</p>
+              <ul class="mt-6 space-y-3 text-slate-400">
+                <li><strong class="text-slate-100">Technologies:</strong> API orchestration, OpenAI-style intelligence, and error-tolerant data flows.</li>
+                <li><strong class="text-slate-100">Result:</strong> Higher data accuracy and faster decision-ready insights.</li>
+              </ul>
+            </article>
+
+            <article class="group rounded-[2rem] border border-slate-800/90 bg-slate-900/80 p-8 shadow-glow transition hover:-translate-y-1 hover:border-cyan-400/40">
+              <div class="flex items-center justify-between gap-4">
+                <span class="rounded-full bg-slate-700/70 px-3 py-1.5 text-xs uppercase tracking-[0.25em] text-cyan-300">Workflow Automation</span>
+                <span class="text-xs uppercase tracking-[0.25em] text-slate-500">Business</span>
+              </div>
+              <h3 class="mt-6 text-2xl font-semibold text-white">Error-aware operational automation</h3>
+              <p class="mt-4 text-slate-300">Implemented automation circuits that detect faults, trigger corrective actions, and log outcomes for audit confidence.</p>
+              <ul class="mt-6 space-y-3 text-slate-400">
+                <li><strong class="text-slate-100">Technology:</strong> Automated alerting with structured retries and fallback routes.</li>
+                <li><strong class="text-slate-100">Impact:</strong> Increased process uptime and improved business trust in automation.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="experience" class="mt-20 overflow-hidden rounded-[2rem] border border-slate-800/90 bg-slate-900/80 p-8 shadow-glow">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p class="text-sm uppercase tracking-[0.28em] text-cyan-300">Experience</p>
+              <h2 class="mt-4 text-3xl font-semibold text-white sm:text-4xl">Impact in 5 months of AI automation delivery.</h2>
+            </div>
+            <div class="rounded-full bg-slate-950/90 px-5 py-3 text-sm font-semibold text-cyan-300 ring-1 ring-cyan-400/20">Hands-on automation experience</div>
+          </div>
+          <div class="mt-10 grid gap-6 lg:grid-cols-3">
+            <div class="rounded-[1.75rem] border border-slate-800/90 bg-slate-950/80 p-6">
+              <p class="text-sm uppercase tracking-[0.24em] text-cyan-300">Portal leadership</p>
+              <p class="mt-4 text-slate-300 leading-7">Led the design and launch of an internal automation portal that centralized workflow control and deployment visibility.</p>
+            </div>
+            <div class="rounded-[1.75rem] border border-slate-800/90 bg-slate-950/80 p-6">
+              <p class="text-sm uppercase tracking-[0.24em] text-cyan-300">Production workflows</p>
+              <p class="mt-4 text-slate-300 leading-7">Delivered dozens of n8n workflows that automate business operations while preserving reliability and auditability.</p>
+            </div>
+            <div class="rounded-[1.75rem] border border-slate-800/90 bg-slate-950/80 p-6">
+              <p class="text-sm uppercase tracking-[0.24em] text-cyan-300">Value delivery</p>
+              <p class="mt-4 text-slate-300 leading-7">Focused on automation that drives measurable outcomes, from error reduction to faster decision making across teams.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="mt-20 rounded-[2rem] border border-slate-800/90 bg-slate-900/80 p-10 shadow-glow sm:p-12">
+          <div class="grid gap-10 lg:grid-cols-[0.9fr_0.9fr] lg:items-start">
+            <div>
+              <p class="text-sm uppercase tracking-[0.28em] text-cyan-300">Contact</p>
+              <h2 class="mt-4 text-3xl font-semibold text-white sm:text-4xl">Ready to create reliable automation systems?</h2>
+              <p class="mt-5 max-w-xl text-slate-300 leading-7">Share your automation priorities and I’ll help translate them into dependable AI-powered workflows and integration strategies.</p>
+              <div class="mt-10 space-y-6 rounded-[1.75rem] bg-slate-950/70 p-6 ring-1 ring-slate-700/80">
+                <div>
+                  <p class="text-sm uppercase tracking-[0.25em] text-slate-400">Email</p>
+                  <p class="mt-2 text-base text-slate-200">abeha.aamir@example.com</p>
+                </div>
+                <div>
+                  <p class="text-sm uppercase tracking-[0.25em] text-slate-400">Location</p>
+                  <p class="mt-2 text-base text-slate-200">Remote | Global teams</p>
+                </div>
+              </div>
+            </div>
+            <form class="space-y-5 rounded-[1.75rem] border border-slate-800/90 bg-slate-950/70 p-6 shadow-inner shadow-slate-950/20" onsubmit="event.preventDefault(); alert('Thanks! Your message is ready to send.');">
+              <div>
+                <label class="block text-sm font-medium text-slate-300" for="name">Name</label>
+                <input id="name" name="name" required class="form-float mt-3 w-full rounded-3xl border border-slate-800 bg-slate-900/90 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20" placeholder="Your name" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-300" for="email">Email</label>
+                <input id="email" name="email" type="email" required class="form-float mt-3 w-full rounded-3xl border border-slate-800 bg-slate-900/90 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20" placeholder="you@example.com" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-300" for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required class="form-float mt-3 w-full rounded-3xl border border-slate-800 bg-slate-900/90 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20" placeholder="Describe the automation challenge"></textarea>
+              </div>
+              <button type="submit" class="inline-flex w-full items-center justify-center rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Send inquiry</button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="border-t border-slate-800/90 bg-slate-950/80 px-6 py-8 text-slate-500 sm:px-10 lg:px-12">
+      <div class="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-sm">© 2026 Abeeha Aamir. AI Automation Developer.</p>
+        <div class="flex flex-wrap gap-4 text-sm text-slate-400">
+          <a href="#hero" class="transition hover:text-white">Back to top</a>
+          <a href="#projects" class="transition hover:text-white">Projects</a>
+          <a href="#contact" class="transition hover:text-white">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const themeToggle = document.getElementById('themeToggle');
+      const root = document.documentElement;
+      const savedTheme = localStorage.getItem('theme');
+
+      const setTheme = (mode) => {
+        if (mode === 'light') {
+          root.classList.remove('dark');
+          themeToggle.textContent = 'Dark';
+          themeToggle.classList.add('text-slate-900');
+          themeToggle.classList.remove('text-slate-200');
+        } else {
+          root.classList.add('dark');
+          themeToggle.textContent = 'Light';
+          themeToggle.classList.add('text-slate-200');
+          themeToggle.classList.remove('text-slate-900');
+        }
+        localStorage.setItem('theme', mode);
+      };
+
+      if (savedTheme === 'light') {
+        setTheme('light');
+      } else {
+        setTheme('dark');
+      }
+
+      themeToggle.addEventListener('click', () => {
+        setTheme(root.classList.contains('dark') ? 'light' : 'dark');
+      });
+    </script>
+  </body>
+</html>
