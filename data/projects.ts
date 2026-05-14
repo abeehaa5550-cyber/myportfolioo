@@ -1,46 +1,65 @@
 export type Project = {
+  code: string
   title: string
-  subtitle: string
   description: string
   image: string
-  tags: string[]
-  liveLink?: string
-  githubLink?: string
+  keyFeatures: string[]
+  stack: string[]
 }
 
 export const featuredProjects: Project[] = [
   {
-    title: 'Hostyo Owner Portal',
-    subtitle: 'Next.js property management portal',
+    code: 'SYS.PRJ.01',
+    title: 'Hostyo — Property Management Owner Portal',
     description:
-      'A polished owner-facing portal for property management, integrating rental operations with modern automation and process governance.',
-    image: '/images/hostyo-portal.svg',
-    tags: ['Next.js', 'Tailwind CSS', 'API integrations', 'Portal UX'],
-    liveLink: '#contact',
-    githubLink: '#',
+      'A full-stack owner portal built with Next.js 15 and TypeScript, using Notion as a headless backend.',
+    image: '/images/hostyo-owner-portal.png',
+    keyFeatures: [
+      'Live visibility into reservations',
+      'Payouts, expenses, and financial dashboards',
+      'Real-time sync',
+    ],
+    stack: ['Next.js 15', 'Notion API', 'Tailwind', 'n8n', 'Supabase', 'Vercel'],
   },
   {
-    title: 'n8n Automation Suite',
-    subtitle: 'Business workflow orchestration',
+    code: 'SYS.PRJ.02',
+    title: 'HubSpot Email Scraper & Importer',
     description:
-      'A production-grade set of n8n workflows connecting Notion, HubSpot, Hostex, Outlook, and core systems to remove manual handoffs and improve data velocity.',
-    image: '/images/n8n-workflows.svg',
-    tags: ['n8n', 'API Automation', 'Webhooks', 'Reliability'],
+      'An automation that scrapes hundreds of prospect emails and imports enriched contacts into HubSpot using Python scrapers and an n8n pipeline.',
+    image: '/images/hubspot-email-scraper-importer.png',
+    keyFeatures: [
+      'High-volume extraction',
+      'Email validation and deduplication',
+      'Automatic segmentation',
+      'Idempotent imports',
+    ],
+    stack: ['Python', 'BeautifulSoup', 'Apify', 'n8n', 'HubSpot API'],
   },
   {
-    title: 'Loan Document AI Agent',
-    subtitle: 'Intelligent underwriting assistance',
+    code: 'SYS.PRJ.03',
+    title: 'Borrower Concierge AI Agent',
     description:
-      'An AI agent that accelerates loan document review, extracts critical underwriting details, and delivers precise operational insights.',
-    image: '/images/ai-agents.svg',
-    tags: ['AI Agents', 'Document intelligence', 'Underwriting', 'Extraction'],
+      'Intelligent multi-step AI agent that assists borrowers throughout the lending process.',
+    image: '/images/borrower-concierge-ai-agent.png',
+    keyFeatures: ['Document analysis', 'Personalized guidance', 'Automated workflows'],
+    stack: ['Django', 'Agno', 'OpenAI', 'Claude', 'PostgreSQL'],
   },
   {
-    title: 'User Onboarding AI Agent',
-    subtitle: 'Business lending activation',
+    code: 'SYS.PRJ.04',
+    title: 'Business Lending Document Auditor AI Agent',
     description:
-      'A workflow-driven agent that validates borrower data, triggers onboarding tasks, and makes new applications move faster.',
-    image: '/images/ai-agents.svg',
-    tags: ['Onboarding', 'AI workflows', 'Customer experience', 'Activation'],
+      'AI-powered system that audits business lending documents with high accuracy and structured output.',
+    image: '/images/business-lending-document-auditor-ai-agent.png',
+    keyFeatures: ['PDF extraction', 'Risk assessment', 'Compliance checking'],
+    stack: ['Django', 'LangChain', 'OpenAI', 'pdfplumber'],
+  },
+  {
+    code: 'SYS.PRJ.05',
+    title: 'Automated Owner Payouts — n8n + Revolut + Notion',
+    description:
+      'Production-grade n8n workflow for owner payout automation and reconciliation.',
+    image: '/images/automated-owner-payouts-n8n-revolut-notion.png',
+    keyFeatures: ['Multi-account segregation', 'Automated statements', 'Full audit trail'],
+    stack: ['n8n', 'Revolut Business API', 'Notion API', 'PostgreSQL', 'Slack'],
   },
 ]

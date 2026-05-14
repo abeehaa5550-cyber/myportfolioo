@@ -2,6 +2,7 @@
 
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
+import { Send } from 'lucide-react'
 
 type ContactFormValues = {
   name: string
@@ -21,9 +22,6 @@ export function ContactForm() {
     console.log('Contact inquiry:', data)
     reset()
     window.alert('Message received. I will follow up shortly!')
-
-    // Placeholder for EmailJS or similar integration:
-    // emailjs.send('service_xxx', 'template_xxx', data, 'publicKey')
   }
 
   return (
@@ -32,25 +30,29 @@ export function ContactForm() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       onSubmit={handleSubmit(onSubmit)}
-      className="surface-card p-8 sm:p-10"
+      className="surface-card p-6 sm:p-8"
     >
+      <div className="mb-7 border-b border-white/10 pb-5">
+        <p className="font-mono text-xs uppercase tracking-[0.4em] text-[#CCC9B4]">TX.REQUEST</p>
+        <h3 className="mt-3 text-2xl font-semibold text-[#F5EDE4]">Start transmission</h3>
+      </div>
       <div className="space-y-5">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-slate-300">
-            Name
+          <label htmlFor="name" className="block font-mono text-[11px] uppercase tracking-[0.3em] text-[#CCC9B4]">
+            NAME
           </label>
           <input
             id="name"
             {...register('name', { required: 'Please enter your name.' })}
             placeholder="Your name"
-            className="mt-3 w-full rounded-3xl border border-slate-800 bg-slate-950/90 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20"
+            className="mt-3 w-full rounded-lg border border-white/10 bg-[#111111] px-4 py-3 text-sm text-[#EDE4D4] outline-none transition duration-200 placeholder:text-[#8C7561] focus:border-[#EDE4D4] focus:ring-2 focus:ring-[#EDE4D4]/15"
           />
-          {errors.name ? <p className="mt-2 text-xs text-rose-400">{errors.name.message}</p> : null}
+          {errors.name ? <p className="mt-2 text-xs text-[#F5EDE4]">{errors.name.message}</p> : null}
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-slate-300">
-            Email
+          <label htmlFor="email" className="block font-mono text-[11px] uppercase tracking-[0.3em] text-[#CCC9B4]">
+            EMAIL
           </label>
           <input
             id="email"
@@ -63,31 +65,32 @@ export function ContactForm() {
               },
             })}
             placeholder="you@example.com"
-            className="mt-3 w-full rounded-3xl border border-slate-800 bg-slate-950/90 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20"
+            className="mt-3 w-full rounded-lg border border-white/10 bg-[#111111] px-4 py-3 text-sm text-[#EDE4D4] outline-none transition duration-200 placeholder:text-[#8C7561] focus:border-[#EDE4D4] focus:ring-2 focus:ring-[#EDE4D4]/15"
           />
-          {errors.email ? <p className="mt-2 text-xs text-rose-400">{errors.email.message}</p> : null}
+          {errors.email ? <p className="mt-2 text-xs text-[#F5EDE4]">{errors.email.message}</p> : null}
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-slate-300">
-            Message
+          <label htmlFor="message" className="block font-mono text-[11px] uppercase tracking-[0.3em] text-[#CCC9B4]">
+            MESSAGE
           </label>
           <textarea
             id="message"
             rows={5}
             {...register('message', { required: 'Please share a brief message.' })}
             placeholder="Describe your automation priority"
-            className="mt-3 w-full rounded-3xl border border-slate-800 bg-slate-950/90 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-400/20"
+            className="mt-3 w-full rounded-lg border border-white/10 bg-[#111111] px-4 py-3 text-sm text-[#EDE4D4] outline-none transition duration-200 placeholder:text-[#8C7561] focus:border-[#EDE4D4] focus:ring-2 focus:ring-[#EDE4D4]/15"
           />
-          {errors.message ? <p className="mt-2 text-xs text-rose-400">{errors.message.message}</p> : null}
+          {errors.message ? <p className="mt-2 text-xs text-[#F5EDE4]">{errors.message.message}</p> : null}
         </div>
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex w-full items-center justify-center rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/20 transition hover:bg-brand-400 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#EDE4D4] px-6 py-3 text-sm font-semibold text-[#111111] transition duration-200 hover:-translate-y-0.5 hover:bg-[#F5EDE4] hover:shadow-[0_18px_45px_rgba(237,228,212,0.14)] disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {isSubmitting ? 'Sending...' : 'Send message'}
+          <Send className="h-4 w-4" />
+          {isSubmitting ? 'Sending...' : 'Send transmission'}
         </button>
       </div>
     </motion.form>

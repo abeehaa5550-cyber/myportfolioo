@@ -5,27 +5,19 @@ export type SkillGroup = {
 
 export const skillGroups: SkillGroup[] = [
   {
-    title: 'n8n & Workflow Orchestration',
-    items: ['Workflow architecture', 'Trigger logic', 'Error handling', 'Deployment governance'],
+    title: 'AI & Automation',
+    items: ['n8n', 'Make', 'Zapier', 'LangChain', 'CrewAI', 'Claude', 'OpenAI'],
   },
   {
-    title: 'AI & LLMs',
-    items: ['Prompt engineering', 'AI agent design', 'Document intelligence', 'Extraction pipelines'],
+    title: 'Backend',
+    items: ['Python', 'Django', 'Django REST Framework', 'FastAPI', 'PostgreSQL', 'Redis', 'Celery'],
   },
   {
-    title: 'Integrations & APIs',
-    items: ['REST & Webhooks', 'SaaS connectors', 'HubSpot / Notion / Outlook', 'Custom endpoints'],
+    title: 'Development',
+    items: ['VS Code', 'Git', 'Docker', 'Linux'],
   },
   {
-    title: 'Frontend Experience',
-    items: ['Next.js 15', 'Tailwind CSS', 'Responsive UIs', 'Micro-interactions'],
-  },
-  {
-    title: 'Backend & Automation',
-    items: ['Node.js', 'Serverless patterns', 'Data pipelines', 'Monitoring'],
-  },
-  {
-    title: 'Tools & Productivity',
-    items: ['Framer Motion', 'React Hook Form', 'Vercel deployment', 'Observability'],
+    title: 'Integrations',
+    items: ['Notion', 'HubSpot', 'REST APIs', 'Webhooks', 'OAuth'],
   },
 ]

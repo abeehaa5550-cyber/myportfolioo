@@ -1,227 +1,85 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { useGLTF, PerspectiveCamera } from '@react-three/drei'
-import * as THREE from 'three'
+import { Float, Line, OrbitControls, Stars } from '@react-three/drei'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { useMemo, useRef } from 'react'
+import type { Group } from 'three'
 
-// Spark/Particle Effect Component
-function SparkEffect({ position }: { position: THREE.Vector3 }) {
-  const particlesRef = useRef<THREE.Points>(null)
-  const particleCount = 200
+function NeuralCore() {
+  const groupRef = useRef<Group>(null)
+  const nodes = useMemo(
+    () =>
+      Array.from({ length: 42 }, (_, index) => {
+        const angle = index * 0.74
+        const radius = 1.72 + (index % 9) * 0.18
+        return [
+          Math.cos(angle) * radius,
+          Math.sin(angle * 1.34) * radius * 0.52,
+          Math.sin(index * 1.18) * 0.82,
+        ] as [number, number, number]
+      }),
+    [],
+  )
 
-  useEffect(() => {
-    if (!particlesRef.current) return
-
-    const geometry = new THREE.BufferGeometry()
-    const positions = new Float32Array(particleCount * 3)
-    const velocities = new Float32Array(particleCount * 3)
-
-    for (let i = 0; i < particleCount; i++) {
-      // Random position in sphere around contact point
-      const angle = Math.random() * Math.PI * 2
-      const elevation = Math.random() * Math.PI
-      const radius = Math.random() * 0.5
-
-      positions[i * 3] = position.x + Math.sin(elevation) * Math.cos(angle) * radius
-      positions[i * 3 + 1] = position.y + Math.sin(elevation) * Math.sin(angle) * radius
-      positions[i * 3 + 2] = position.z + Math.cos(elevation) * radius
-
-      // Velocity vectors for outward movement
-      velocities[i * 3] = (Math.random() - 0.5) * 0.05
-      velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.05
-      velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.05
-    }
-
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
-    geometry.userData.velocities = velocities
-
-    particlesRef.current.geometry = geometry
-  }, [position, particleCount])
-
-  useFrame(() => {
-    if (!particlesRef.current) return
-
-    const geometry = particlesRef.current.geometry as THREE.BufferGeometry
-    const positions = geometry.attributes.position.array as Float32Array
-    const velocities = geometry.userData.velocities as Float32Array
-
-    for (let i = 0; i < particleCount; i++) {
-      positions[i * 3] += velocities[i * 3]
-      positions[i * 3 + 1] += velocities[i * 3 + 1]
-      positions[i * 3 + 2] += velocities[i * 3 + 2]
-
-      velocities[i * 3] *= 0.98
-      velocities[i * 3 + 1] *= 0.98
-      velocities[i * 3 + 2] *= 0.98
-    }
-
-    geometry.attributes.position.needsUpdate = true
-  })
-
-  const material = new THREE.PointsMaterial({
-    color: '#a855f7',
-    size: 0.1,
-    sizeAttenuation: true,
-    transparent: true,
-    opacity: 0.8,
-  })
-
-  return <points ref={particlesRef} material={material} />
-}
-
-// Hand Model Component
-function Hand({
-  modelPath,
-  position,
-  rotation,
-  scale,
-  targetPosition,
-}: {
-  modelPath: string
-  position: [number, number, number]
-  rotation: [number, number, number]
-  scale: number
-  targetPosition: [number, number, number]
-}) {
-  const groupRef = useRef<THREE.Group>(null)
-  const { scene: gltfScene } = useGLTF(modelPath) || { scene: new THREE.Scene() }
-
-  useEffect(() => {
-    if (groupRef.current && gltfScene) {
-      groupRef.current.clear()
-      groupRef.current.add(gltfScene.clone())
-    }
-  }, [gltfScene])
-
-  // Animate towards target position
-  useFrame(() => {
+  useFrame(({ clock, pointer }) => {
     if (!groupRef.current) return
-
-    const current = groupRef.current.position
-    current.x += (targetPosition[0] - current.x) * 0.02
-    current.y += (targetPosition[1] - current.y) * 0.02
-    current.z += (targetPosition[2] - current.z) * 0.02
+    const elapsed = clock.getElapsedTime()
+    groupRef.current.rotation.y = elapsed * 0.12 + pointer.x * 0.18
+    groupRef.current.rotation.x = Math.sin(elapsed * 0.35) * 0.12 - pointer.y * 0.14
+    groupRef.current.position.x = pointer.x * 0.16
+    groupRef.current.position.y = pointer.y * 0.1
   })
 
   return (
-    <group ref={groupRef} position={position} rotation={rotation} scale={scale} />
-  )
-}
-
-// Main 3D Scene Component
-function Scene3D({
-  touchTriggered,
-}: {
-  touchTriggered: boolean
-}) {
-  const [sparkPosition, setSparkPosition] = useState<THREE.Vector3 | null>(null)
-
-  // Target positions for hands
-  const humanHandTarget: [number, number, number] = touchTriggered ? [0.5, 0, 0] : [-2, -1.5, -1]
-  const aiHandTarget: [number, number, number] = touchTriggered ? [-0.5, 0, 0] : [2, 1.5, -1]
-
-  // Trigger spark effect at contact point
-  useEffect(() => {
-    if (touchTriggered) {
-      setSparkPosition(new THREE.Vector3(0, 0, 0))
-    }
-  }, [touchTriggered])
-
-  return (
-    <>
-      {/* Lighting Setup */}
-      <PerspectiveCamera makeDefault position={[0, 0, 3]} fov={50} />
-      
-      <ambientLight intensity={0.5} color="#ffffff" />
-      
-      {/* Spotlight on contact point */}
-      <spotLight
-        position={[0, 2, 2]}
-        angle={0.5}
-        penumbra={1}
-        intensity={2}
-        color="#a855f7"
-        castShadow
-      />
-      
-      {/* Directional light for global illumination */}
-      <directionalLight position={[-5, 5, 5]} intensity={1} color="#0ea5e9" />
-
-      {/* Human Hand (from left) */}
-      <Hand
-        modelPath="/models/human_hand.glb"
-        position={[-2, -1.5, -1]}
-        rotation={[0.2, 0.3, -0.1]}
-        scale={1.2}
-        targetPosition={humanHandTarget}
-      />
-
-      {/* AI Hand (from right) */}
-      <Hand
-        modelPath="/models/ai_hand.glb"
-        position={[2, 1.5, -1]}
-        rotation={[0.1, -0.3, 0.2]}
-        scale={1.2}
-        targetPosition={aiHandTarget}
-      />
-
-      {/* Spark Effect at contact point */}
-      {sparkPosition && <SparkEffect position={sparkPosition} />}
-
-      {/* Glow around contact point */}
-      {touchTriggered && (
-        <mesh position={[0, 0, 0]}>
-          <sphereGeometry args={[0.6, 32, 32]} />
-          <meshBasicMaterial
-            color="#a855f7"
-            transparent
-            opacity={0.15}
-            wireframe={false}
-          />
+    <group ref={groupRef} scale={1.26}>
+      <Float speed={1.25} rotationIntensity={0.22} floatIntensity={0.22}>
+        <mesh>
+          <icosahedronGeometry args={[1.18, 2]} />
+          <meshStandardMaterial color="#EDE4D4" emissive="#6F5D49" emissiveIntensity={0.16} wireframe roughness={0.45} />
         </mesh>
-      )}
-    </>
+        <mesh rotation={[Math.PI / 2.4, 0, 0]}>
+          <torusGeometry args={[1.94, 0.01, 16, 128]} />
+          <meshStandardMaterial color="#B8B8B0" transparent opacity={0.46} wireframe />
+        </mesh>
+        <mesh rotation={[0, Math.PI / 2.8, 0]}>
+          <torusGeometry args={[2.5, 0.008, 16, 128]} />
+          <meshStandardMaterial color="#EDE4D4" transparent opacity={0.22} wireframe />
+        </mesh>
+      </Float>
+
+      {nodes.map((node, index) => (
+        <mesh key={`node-${index}`} position={node}>
+          <sphereGeometry args={[index % 5 === 0 ? 0.035 : 0.023, 12, 12]} />
+          <meshBasicMaterial color={index % 5 === 0 ? '#F5EDE4' : '#B8B8B0'} transparent opacity={0.76} />
+        </mesh>
+      ))}
+
+      {nodes.slice(0, -1).map((node, index) => (
+        <Line
+          key={`line-${index}`}
+          points={[node, nodes[index + 1]]}
+          color="#EDE4D4"
+          transparent
+          opacity={0.13}
+          lineWidth={1}
+        />
+      ))}
+    </group>
   )
 }
 
-// Main HeroScene Component
 export function HeroScene() {
-  const [touchTriggered, setTouchTriggered] = useState(false)
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
-
-  // Trigger the touch animation after 2 seconds of loading
-  useEffect(() => {
-    timeoutRef.current = setTimeout(() => {
-      setTouchTriggered(true)
-    }, 2000)
-
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    }
-  }, [])
-
   return (
-    <Canvas
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 0,
-      }}
-      dpr={[1, 2]}
-      performance={{ current: 1, min: 0.5 }}
-    >
-      {/* Dark background with gradient */}
-      <color attach="background" args={['#020617']} />
-      
-      {/* Scene with 3D hands and effects */}
-      <Scene3D touchTriggered={touchTriggered} />
-
-      {/* Optional: Fog for depth perception */}
-      <fog attach="fog" args={['#020617', 5, 15]} />
-    </Canvas>
+    <div className="absolute inset-0 opacity-95">
+      <Canvas camera={{ position: [0, 0, 5.9], fov: 48 }} dpr={[1, 1.6]} gl={{ antialias: true, alpha: true }}>
+        <ambientLight intensity={0.64} />
+        <pointLight position={[2.8, 2.4, 3.2]} color="#EDE4D4" intensity={16} />
+        <pointLight position={[-2.8, -1.6, 2.4]} color="#B8B8B0" intensity={5} />
+        <Stars radius={46} depth={20} count={820} factor={2.1} saturation={0} fade speed={0.18} />
+        <NeuralCore />
+        <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
+      </Canvas>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(17,17,17,0.68)_0%,rgba(17,17,17,0.44)_18%,rgba(237,228,212,0.08)_42%,transparent_66%),linear-gradient(180deg,rgba(17,17,17,0.08),rgba(17,17,17,0.76))]" />
+    </div>
   )
 }

@@ -1,82 +1,54 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
-import { Moon, Sun, Menu, X } from 'lucide-react'
+import { useState } from 'react'
+import { Menu, Radio, X } from 'lucide-react'
 
 const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'ABOUT', href: '#about' },
+  { label: 'CAPABILITIES', href: '#capabilities' },
+  { label: 'ARSENAL', href: '#arsenal' },
+  { label: 'SHOWCASE', href: '#showcase' },
+  { label: 'CONTACT', href: '#contact' },
 ]
 
 export function Navbar() {
-  const [mounted, setMounted] = useState(false)
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
   const [menuOpen, setMenuOpen] = useState(false)
 
-  useEffect(() => {
-    setMounted(true)
-    const stored = window.localStorage.getItem('theme')
-    if (stored === 'light') {
-      setTheme('light')
-      document.documentElement.classList.remove('dark')
-    } else {
-      setTheme('dark')
-      document.documentElement.classList.add('dark')
-    }
-  }, [])
-
-  useEffect(() => {
-    if (!mounted) return
-    document.documentElement.classList.toggle('dark', theme === 'dark')
-    window.localStorage.setItem('theme', theme)
-  }, [theme, mounted])
-
   return (
-    <motion.header
-      initial={{ y: -16, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.55, ease: 'easeOut' }}
-      className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl"
-    >
-      <div className="main-container flex items-center justify-between gap-6 py-4">
-        <a href="#hero" className="flex items-center gap-3 text-base font-semibold text-white transition duration-300 hover:text-brand-300">
-          <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-900 ring-1 ring-brand-500/20">AA</span>
-          <span className="hidden sm:inline">Abeeha Aamir</span>
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#111111]/95 backdrop-blur-xl">
+      <div className="main-container flex items-center justify-between gap-4 py-4">
+        <a href="#hero" className="group flex items-center gap-3">
+          <div className="relative inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-[#1F1F1F] text-sm font-black text-[#EDE4D4] transition duration-300 group-hover:border-[#EDE4D4]/45 group-hover:shadow-[0_0_28px_rgba(237,228,212,0.16)]">
+            <span className="relative z-10 tracking-tight">A</span>
+            <span className="absolute bottom-2 h-px w-5 bg-[#EDE4D4]/70" />
+          </div>
+          <div>
+            <p className="font-mono text-[9px] uppercase tracking-[0.35em] text-[#B8B8B0]">SYSTEM ID</p>
+            <p className="text-sm font-semibold text-[#F5EDE4] transition group-hover:text-white">Abeeha Aamir</p>
+          </div>
         </a>
 
-        <nav className="hidden items-center gap-5 md:flex">
+        <nav className="hidden items-center gap-6 md:flex">
           {navLinks.map((item) => (
-            <a key={item.href} href={item.href} className="text-sm text-slate-300 transition hover:text-white">
+            <a key={item.href} href={item.href} className="nav-link">
               {item.label}
             </a>
           ))}
         </nav>
 
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            aria-label="Toggle theme"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-800 bg-slate-900/90 text-slate-200 transition hover:border-brand-400 hover:text-white"
-          >
-            {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-          </button>
-
           <a
             href="#contact"
-            className="hidden rounded-full bg-brand-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/20 transition hover:bg-brand-400 md:inline-flex"
+            className="hidden items-center gap-2 rounded-lg bg-[#EDE4D4] px-4 py-2.5 text-xs font-semibold text-[#111111] transition duration-300 hover:-translate-y-0.5 hover:bg-[#F5EDE4] hover:shadow-[0_16px_40px_rgba(237,228,212,0.16)] md:inline-flex"
           >
-            Get in touch
+            <Radio className="h-4 w-4" />
+            START TRANSMISSION
           </a>
 
           <button
             type="button"
             onClick={() => setMenuOpen((value) => !value)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-800 bg-slate-900/90 text-slate-200 transition hover:border-brand-400 hover:text-white md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-[#2A2A2A] text-[#EDE4D4] transition hover:border-[#EDE4D4] md:hidden"
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -84,24 +56,27 @@ export function Navbar() {
       </div>
 
       {menuOpen ? (
-        <div className="border-t border-white/10 bg-slate-950/95 px-6 py-5 md:hidden">
-          <div className="flex flex-col gap-4">
+        <div className="border-t border-white/10 bg-[#111111]/95 px-6 py-5 md:hidden">
+          <div className="flex flex-col gap-3">
             {navLinks.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="block rounded-2xl bg-slate-900/80 px-4 py-3 text-sm text-slate-100 transition hover:bg-slate-900"
+                className="block rounded-lg border border-white/10 bg-[#2A2A2A] px-4 py-3 text-sm text-[#EDE4D4] transition hover:border-[#EDE4D4]/40 hover:bg-[#333333]"
                 onClick={() => setMenuOpen(false)}
               >
                 {item.label}
               </a>
             ))}
-            <a href="#contact" className="block rounded-2xl bg-brand-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-brand-400">
-              Contact
+            <a
+              href="#contact"
+              className="block rounded-lg bg-[#EDE4D4] px-4 py-3 text-sm font-semibold text-[#111111] transition hover:bg-[#F5EDE4]"
+            >
+              START TRANSMISSION
             </a>
           </div>
         </div>
       ) : null}
-    </motion.header>
+    </header>
   )
 }

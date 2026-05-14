@@ -16,9 +16,9 @@ export function SectionHeading({ eyebrow, title, description }: SectionHeadingPr
       transition={{ duration: 0.55, ease: 'easeOut' }}
       className="mb-8 max-w-3xl"
     >
-      <p className="text-sm uppercase tracking-[0.28em] text-brand-300">{eyebrow}</p>
-      <h2 className="mt-4 text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">{title}</h2>
-      {description ? <p className="mt-4 text-slate-400 leading-8">{description}</p> : null}
+      <p className="font-mono text-xs uppercase tracking-[0.5em] text-[#CCC9B4]">{eyebrow}</p>
+      <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#F5EDE4] sm:text-4xl">{title}</h2>
+      {description ? <p className="mt-4 leading-8 text-[#D8CDBA]">{description}</p> : null}
     </motion.div>
   )
 }

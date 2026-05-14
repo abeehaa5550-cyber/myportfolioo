@@ -1,18 +1,20 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
-
 export const metadata: Metadata = {
-  title: 'Abeeha Aamir | AI Automation Developer',
-  description: 'Premium AI Automation portfolio for Abeeha Aamir. Expert in n8n workflows, AI agents, and productivity portals.',
+  title: 'Abeeha Aamir | AI Automation Engineer & Backend Systems Architect',
+  description:
+    'Premium futuristic portfolio for Abeeha Aamir, an AI Automation Engineer and Backend Systems Architect building Python, Django, AI orchestration, RAG, and workflow automation systems.',
   metadataBase: new URL('https://abeha-portfolio.vercel.app'),
   openGraph: {
-    title: 'Abeeha Aamir | AI Automation Developer',
-    description: 'AI Automation Developer building n8n workflows, AI agents, and scalable automation portals.',
+    title: 'Abeeha Aamir | AI Automation Engineer & Backend Systems Architect',
+    description: 'Futuristic portfolio for Python, Django, AI automation, RAG pipelines, and backend systems architecture.',
     type: 'website',
     siteName: 'Abeeha Aamir Portfolio',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
   },
   robots: {
     index: true,
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className={`${inter.variable} font-sans bg-slate-950 text-slate-100 antialiased`}>{children}</body>
+      <body className="font-sans bg-[#111111] text-[#EDE4D4] antialiased">{children}</body>
     </html>
   )
 }
