@@ -20,12 +20,9 @@ html {
 
 body {
   min-height: 100vh;
-  background:
-    linear-gradient(rgba(245, 237, 228, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245, 237, 228, 0.025) 1px, transparent 1px),
-    linear-gradient(180deg, #0F0F0F 0%, #111111 54%, #161616 100%);
-  background-size: 48px 48px, 48px 48px, auto;
+  background: linear-gradient(180deg, #0F0F0F 0%, #111111 54%, #161616 100%);
   color: #EDE4D4;
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -39,8 +36,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(120deg, transparent 0%, rgba(237, 228, 212, 0.04) 48%, transparent 68%),
-    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.025) 0, rgba(255, 255, 255, 0.025) 1px, transparent 1px, transparent 7px);
+    linear-gradient(120deg, transparent 0%, rgba(237, 228, 212, 0.04) 48%, transparent 68%);
   mix-blend-mode: screen;
 }
 
@@ -58,6 +54,42 @@ body::after {
 
 .main-container {
   @apply mx-auto max-w-7xl px-5 py-5 sm:px-8 lg:px-10;
+}
+
+.hero-stage {
+  background:
+    radial-gradient(circle at var(--cursor-x, 50%) var(--cursor-y, 45%), rgba(245, 237, 228, 0.08), transparent 21rem),
+    radial-gradient(circle at 50% 44%, rgba(237, 228, 212, 0.055), transparent 42rem),
+    #111111;
+  isolation: isolate;
+}
+
+.hero-stage canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.ambient-lines {
+  background-image:
+    linear-gradient(90deg, transparent 0%, rgba(237, 228, 212, 0.07) 50%, transparent 100%);
+  background-position: -40vw 18%;
+  background-size: 48vw 1px;
+  background-repeat: no-repeat;
+  animation: scan-line 9s ease-in-out infinite;
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+}
+
+.ambient-nodes span {
+  --i: 0;
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(245, 237, 228, 0.62);
+  box-shadow: 0 0 22px rgba(237, 228, 212, 0.28);
+  opacity: 0.24;
+  animation: node-drift 12s ease-in-out infinite;
 }
 
 .nav-link {
@@ -144,11 +176,19 @@ body::after {
 }
 
 .progress-track {
-  @apply h-2 rounded-full bg-[#3F3F3F];
+  @apply h-2 overflow-hidden rounded-full bg-[#3F3F3F];
 }
 
 .progress-fill {
   @apply h-2 rounded-full bg-[#EDE4D4];
+  box-shadow: 0 0 24px rgba(237, 228, 212, 0.28);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.block-panel:hover .progress-fill {
+  transform: scaleX(1);
 }
 
 .particle-field {
@@ -201,6 +241,32 @@ body::after {
   100% {
     transform: translate3d(1.5%, 1%, 0) scale(1.04);
     opacity: 0.9;
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    background-position: -48vw 18%;
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  100% {
+    background-position: 110vw 18%;
+    opacity: 0.35;
+  }
+}
+
+@keyframes node-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.18;
+  }
+  50% {
+    transform: translate3d(18px, -24px, 0);
+    opacity: 0.44;
   }
 }
 

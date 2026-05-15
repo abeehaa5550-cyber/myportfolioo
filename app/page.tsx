@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 import { Navbar } from '@components/Navbar'
 import { HeroScene } from '@components/HeroScene'
+import { AmbientEffects } from '@components/AmbientEffects'
 import { ProjectCard } from '@components/ProjectCard'
 import { ContactForm } from '@components/ContactForm'
 import { featuredProjects } from '@data/projects'
@@ -183,12 +184,9 @@ function CapabilityCard({ item }: { item: (typeof capabilities)[number] }) {
           <span>{item.capacity}%</span>
         </div>
         <div className="progress-track">
-          <motion.div
+          <div
             className="progress-fill"
-            initial={{ width: 0 }}
-            whileInView={{ width: `${item.capacity}%` }}
-            viewport={{ once: true, amount: 0.75 }}
-            transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
+            style={{ width: `${item.capacity}%` }}
           />
         </div>
       </div>
@@ -199,18 +197,21 @@ function CapabilityCard({ item }: { item: (typeof capabilities)[number] }) {
 export default function HomePage() {
   return (
     <>
+      <AmbientEffects />
       <Navbar />
-      <main className="main-container pb-16 pt-5">
+      <main className="relative z-10 pb-16">
         <motion.section
           id="hero"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="terminal-shell relative flex min-h-[calc(100vh-5.75rem)] items-center justify-center overflow-hidden px-5 py-6 sm:px-8"
+          className="hero-stage relative flex min-h-[calc(100vh-4.6rem)] w-full items-center justify-center overflow-hidden px-5 py-24 sm:px-8"
         >
           <HeroScene />
+          <div className="absolute inset-x-0 top-0 z-[1] h-32 bg-gradient-to-b from-[#111111]/95 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 z-[1] h-40 bg-gradient-to-t from-[#111111] to-transparent" />
 
-          <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center text-center">
+          <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center text-center">
             <div className="status-line mx-auto justify-center">
               <span className="font-mono text-[10px] uppercase tracking-[0.42em] text-sand-100">SYS.STATUS</span>
               {['ONLINE', 'n8n ACTIVE', 'AI CORE READY'].map((item) => (
@@ -228,10 +229,10 @@ export default function HomePage() {
               className="mt-12"
             >
               <p className="font-mono text-[11px] uppercase tracking-[0.5em] text-sand-400">BACKEND / AI AUTOMATION / SYSTEMS</p>
-              <h1 className="mt-6 text-6xl font-black leading-[0.9] tracking-tight text-sand-100 sm:text-8xl lg:text-[8.25rem]">
+              <h1 className="mt-6 text-5xl font-black leading-[0.92] tracking-tight text-sand-100 sm:text-7xl lg:text-[6.6rem]">
                 Abeeha Aamir
               </h1>
-              <p className="mx-auto mt-6 max-w-4xl text-lg font-semibold text-sand-200 sm:text-2xl lg:text-[1.7rem]">
+              <p className="mx-auto mt-6 max-w-4xl text-lg font-semibold text-sand-200 sm:text-2xl lg:text-[1.55rem]">
                 AI Automation Engineer & Backend Systems Architect
               </p>
               <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-sand-300 sm:text-[1.05rem]">
@@ -251,6 +252,7 @@ export default function HomePage() {
           </motion.a>
         </motion.section>
 
+        <div className="main-container">
         <motion.section
           id="about"
           className="section-space particle-field"
@@ -362,7 +364,13 @@ export default function HomePage() {
           </div>
         </motion.section>
 
-        <section className="section-space">
+        <motion.section
+          className="section-space particle-field"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.18 }}
+          transition={{ staggerChildren: 0.08 }}
+        >
           <SectionHeader
             eyebrow="PROFESSIONAL LOG"
             title="Timeline"
@@ -379,9 +387,16 @@ export default function HomePage() {
               </motion.article>
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        <section id="showcase" className="section-space">
+        <motion.section
+          id="showcase"
+          className="section-space"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.12 }}
+          transition={{ staggerChildren: 0.08 }}
+        >
           <SectionHeader
             eyebrow="04 / SHOWCASE"
             title="Featured Projects"
@@ -392,11 +407,17 @@ export default function HomePage() {
               <ProjectCard key={project.title} project={project} />
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        <section className="section-space">
+        <motion.section
+          className="section-space particle-field"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.16 }}
+          transition={{ staggerChildren: 0.08 }}
+        >
           <div className="grid gap-5 lg:grid-cols-[1fr_0.82fr]">
-            <div className="block-panel hover-glow">
+            <motion.div variants={reveal} className="block-panel hover-glow">
               <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-5">
                 <div>
                   <p className="small-header">AUTOMATION LIBRARY</p>
@@ -414,8 +435,8 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-            </div>
-            <div className="block-panel hover-glow">
+            </motion.div>
+            <motion.div variants={reveal} className="block-panel hover-glow">
               <p className="small-header">ACADEMIC LOG</p>
               <h3 className="mt-3 text-xl font-semibold text-sand-100">Learning path</h3>
               <div className="mt-5 space-y-4">
@@ -427,11 +448,18 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
-        </section>
+        </motion.section>
 
-        <section id="contact" className="section-space">
+        <motion.section
+          id="contact"
+          className="section-space"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.18 }}
+          transition={{ staggerChildren: 0.08 }}
+        >
           <div className="grid gap-8 lg:grid-cols-[0.9fr_0.85fr] lg:items-start">
             <div>
               <SectionHeader
@@ -458,7 +486,8 @@ export default function HomePage() {
             </div>
             <ContactForm />
           </div>
-        </section>
+        </motion.section>
+        </div>
       </main>
     </>
   )

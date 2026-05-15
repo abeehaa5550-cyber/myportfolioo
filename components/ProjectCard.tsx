@@ -8,6 +8,9 @@ import type { Project } from '@data/projects'
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <motion.article
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.24 }}
       whileHover={{ y: -7, scale: 1.01 }}
       transition={{ type: 'spring', stiffness: 220, damping: 22 }}
       className="group flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-[#242424]/95 shadow-soft transition duration-300 hover:border-[#EDE4D4]/45 hover:shadow-[0_20px_70px_rgba(237,228,212,0.14)]"
