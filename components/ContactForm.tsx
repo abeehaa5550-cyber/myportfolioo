@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
 import { Send } from 'lucide-react'
@@ -32,9 +33,14 @@ export function ContactForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="surface-card p-6 sm:p-8"
     >
-      <div className="mb-7 border-b border-white/10 pb-5">
-        <p className="font-mono text-xs uppercase tracking-[0.4em] text-[#CCC9B4]">TX.REQUEST</p>
-        <h3 className="mt-3 text-2xl font-semibold text-[#F5EDE4]">Start transmission</h3>
+      <div className="mb-7 flex items-center gap-4 border-b border-white/10 pb-5">
+        <div className="relative h-12 w-12 flex-none overflow-hidden rounded-lg border border-white/10 bg-[#1F1F1F] shadow-[0_0_32px_rgba(237,228,212,0.12)]">
+          <Image src="/images/abeeha-logo.jpg" alt="Abeeha Aamir logo" fill sizes="48px" className="object-cover" />
+        </div>
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.4em] text-[#CCC9B4]">TX.REQUEST</p>
+          <h3 className="mt-2 text-2xl font-semibold text-[#F5EDE4]">Start transmission</h3>
+        </div>
       </div>
       <div className="space-y-5">
         <div>

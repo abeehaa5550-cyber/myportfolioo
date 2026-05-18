@@ -18,6 +18,19 @@ html {
   scroll-behavior: smooth;
 }
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
 body {
   min-height: 100vh;
   background: linear-gradient(180deg, #0F0F0F 0%, #111111 54%, #161616 100%);
@@ -62,6 +75,10 @@ body::after {
     radial-gradient(circle at 50% 44%, rgba(237, 228, 212, 0.055), transparent 42rem),
     #111111;
   isolation: isolate;
+}
+
+.text-glow {
+  text-shadow: 0 0 34px rgba(237, 228, 212, 0.2), 0 0 84px rgba(237, 228, 212, 0.1);
 }
 
 .hero-stage canvas {
@@ -152,6 +169,9 @@ body::after {
 
 .block-panel {
   @apply rounded-lg border border-white/10 bg-[#242424]/90 p-5 shadow-soft transition duration-300;
+  background-image:
+    linear-gradient(135deg, rgba(237, 228, 212, 0.055), transparent 34%),
+    linear-gradient(180deg, rgba(42, 42, 42, 0.92), rgba(31, 31, 31, 0.92));
 }
 
 .metric-panel {
@@ -181,6 +201,7 @@ body::after {
 
 .progress-fill {
   @apply h-2 rounded-full bg-[#EDE4D4];
+  width: var(--progress-width, 100%);
   box-shadow: 0 0 24px rgba(237, 228, 212, 0.28);
   transform: scaleX(0);
   transform-origin: left;
@@ -189,6 +210,25 @@ body::after {
 
 .block-panel:hover .progress-fill {
   transform: scaleX(1);
+}
+
+.gsap-reveal {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gsap-reveal {
+    visibility: visible;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 .particle-field {

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { Menu, Radio, X } from 'lucide-react'
 
 const navLinks = [
@@ -15,12 +16,19 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#111111]/95 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#111111]/82 backdrop-blur-2xl">
       <div className="main-container flex items-center justify-between gap-4 py-4">
         <a href="#hero" className="group flex items-center gap-3">
-          <div className="relative inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-[#1F1F1F] text-sm font-black text-[#EDE4D4] transition duration-300 group-hover:border-[#EDE4D4]/45 group-hover:shadow-[0_0_28px_rgba(237,228,212,0.16)]">
-            <span className="relative z-10 tracking-tight">A</span>
-            <span className="absolute bottom-2 h-px w-5 bg-[#EDE4D4]/70" />
+          <div className="relative h-11 w-11 overflow-hidden rounded-lg border border-white/10 bg-[#1F1F1F] transition duration-300 group-hover:border-[#EDE4D4]/45 group-hover:shadow-[0_0_34px_rgba(237,228,212,0.2)]">
+            <Image
+              src="/images/abeeha-logo.jpg"
+              alt="Abeeha Aamir logo"
+              fill
+              priority
+              sizes="44px"
+              className="object-cover opacity-95 transition duration-300 group-hover:scale-110 group-hover:opacity-100"
+            />
+            <span className="absolute inset-0 bg-[#EDE4D4]/0 transition group-hover:bg-[#EDE4D4]/5" />
           </div>
           <div>
             <p className="font-mono text-[9px] uppercase tracking-[0.35em] text-[#B8B8B0]">SYSTEM ID</p>
@@ -39,7 +47,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <a
             href="#contact"
-            className="hidden items-center gap-2 rounded-lg bg-[#EDE4D4] px-4 py-2.5 text-xs font-semibold text-[#111111] transition duration-300 hover:-translate-y-0.5 hover:bg-[#F5EDE4] hover:shadow-[0_16px_40px_rgba(237,228,212,0.16)] md:inline-flex"
+            className="hidden items-center gap-2 rounded-lg bg-[#EDE4D4] px-4 py-2.5 text-xs font-semibold text-[#111111] transition duration-300 hover:-translate-y-0.5 hover:bg-[#F5EDE4] hover:shadow-[0_0_32px_rgba(237,228,212,0.24),0_18px_45px_rgba(237,228,212,0.14)] md:inline-flex"
           >
             <Radio className="h-4 w-4" />
             START TRANSMISSION

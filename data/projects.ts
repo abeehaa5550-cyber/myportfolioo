@@ -10,7 +10,7 @@ export type Project = {
 export const featuredProjects: Project[] = [
   {
     code: 'SYS.PRJ.01',
-    title: 'Hostyo — Property Management Owner Portal',
+    title: 'Hostyo - Property Management Owner Portal',
     description:
       'A full-stack owner portal built with Next.js 15 and TypeScript, using Notion as a headless backend.',
     image: '/images/hostyo-owner-portal.png',
@@ -55,7 +55,7 @@ export const featuredProjects: Project[] = [
   },
   {
     code: 'SYS.PRJ.05',
-    title: 'Automated Owner Payouts — n8n + Revolut + Notion',
+    title: 'Automated Owner Payouts - n8n + Revolut + Notion',
     description:
       'Production-grade n8n workflow for owner payout automation and reconciliation.',
     image: '/images/automated-owner-payouts-n8n-revolut-notion.png',

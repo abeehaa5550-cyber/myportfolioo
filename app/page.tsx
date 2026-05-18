@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import type { CSSProperties } from 'react'
 import {
   ArrowDown,
   Bot,
@@ -25,6 +26,8 @@ import { HeroScene } from '@components/HeroScene'
 import { AmbientEffects } from '@components/AmbientEffects'
 import { ProjectCard } from '@components/ProjectCard'
 import { ContactForm } from '@components/ContactForm'
+import { ScrollProgress } from '@components/ScrollProgress'
+import { FAQAccordion } from '@components/FAQAccordion'
 import { featuredProjects } from '@data/projects'
 import { skillGroups } from '@data/skills'
 
@@ -58,6 +61,12 @@ const services = [
   'API Development & Third-party Integrations',
   'AI Voice Assistants & Integrations',
   'Scalable Backend Architecture & Infrastructure',
+]
+
+const philosophy = [
+  'I design automations as reliable products, not fragile shortcuts.',
+  'Every AI output needs context, validation, observability, and a clean fallback path.',
+  'The best backend systems feel calm from the outside because the complexity is handled in the architecture.',
 ]
 
 const timelineEntries = [
@@ -137,8 +146,8 @@ const toolIcons: Record<string, typeof Code2> = {
 }
 
 const reveal = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 26, scale: 0.985 },
+  show: { opacity: 1, y: 0, scale: 1 },
 }
 
 function SectionHeader({
@@ -186,7 +195,7 @@ function CapabilityCard({ item }: { item: (typeof capabilities)[number] }) {
         <div className="progress-track">
           <div
             className="progress-fill"
-            style={{ width: `${item.capacity}%` }}
+            style={{ '--progress-width': `${item.capacity}%` } as CSSProperties}
           />
         </div>
       </div>
@@ -197,6 +206,7 @@ function CapabilityCard({ item }: { item: (typeof capabilities)[number] }) {
 export default function HomePage() {
   return (
     <>
+      <ScrollProgress />
       <AmbientEffects />
       <Navbar />
       <main className="relative z-10 pb-16">
@@ -205,37 +215,39 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="hero-stage relative flex min-h-[calc(100vh-4.6rem)] w-full items-center justify-center overflow-hidden px-5 py-24 sm:px-8"
+          className="hero-stage relative flex min-h-screen w-full items-start justify-center overflow-hidden px-5 pb-28 pt-12 sm:px-8 sm:pt-14 lg:pt-16"
         >
           <HeroScene />
-          <div className="absolute inset-x-0 top-0 z-[1] h-32 bg-gradient-to-b from-[#111111]/95 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 z-[1] h-40 bg-gradient-to-t from-[#111111] to-transparent" />
+          <div className="absolute inset-0 z-[1] bg-[#111111]/35" />
+          <div className="absolute inset-x-0 top-0 z-[1] h-40 bg-gradient-to-b from-[#111111] to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 z-[1] h-56 bg-gradient-to-t from-[#111111] to-transparent" />
 
           <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center text-center">
-            <div className="status-line mx-auto justify-center">
-              <span className="font-mono text-[10px] uppercase tracking-[0.42em] text-sand-100">SYS.STATUS</span>
-              {['ONLINE', 'n8n ACTIVE', 'AI CORE READY'].map((item) => (
-                <span key={item} className="status-chip">
-                  <span className="h-1.5 w-1.5 rounded-full bg-sand-200 shadow-[0_0_16px_rgba(237,228,212,0.55)]" />
-                  {item}
-                </span>
-              ))}
-            </div>
-
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.12, ease: 'easeOut' }}
-              className="mt-12"
+              className="w-full"
             >
-              <p className="font-mono text-[11px] uppercase tracking-[0.5em] text-sand-400">BACKEND / AI AUTOMATION / SYSTEMS</p>
-              <h1 className="mt-6 text-5xl font-black leading-[0.92] tracking-tight text-sand-100 sm:text-7xl lg:text-[6.6rem]">
+              <div className="status-line mx-auto justify-center border-white/10 bg-[#111111]/35 px-4 py-2 text-sand-400 backdrop-blur-md">
+                <span className="font-mono text-[9px] uppercase tracking-[0.34em]">SYS.STATUS</span>
+                {['ONLINE', 'N8N ACTIVE', 'AI CORE READY'].map((item) => (
+                  <span key={item} className="status-chip border-white/10 bg-white/[0.03] text-sand-300">
+                    <span className="h-1 w-1 rounded-full bg-sand-300" />
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.5em] text-sand-400 sm:text-[11px]">
+                BACKEND / AI AUTOMATION / SYSTEMS
+              </p>
+              <h1 className="mx-auto mt-5 max-w-5xl text-5xl font-black leading-[0.95] tracking-tight text-sand-100 text-glow sm:text-7xl lg:text-[7.4rem]">
                 Abeeha Aamir
               </h1>
-              <p className="mx-auto mt-6 max-w-4xl text-lg font-semibold text-sand-200 sm:text-2xl lg:text-[1.55rem]">
+              <p className="mx-auto mt-6 max-w-3xl text-base font-medium leading-8 text-sand-200 sm:text-xl lg:text-2xl">
                 AI Automation Engineer & Backend Systems Architect
               </p>
-              <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-sand-300 sm:text-[1.05rem]">
+              <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-sand-300 sm:text-base">
                 Building intelligent, scalable Python & Django systems powered by AI orchestration and automation.
               </p>
             </motion.div>
@@ -243,11 +255,11 @@ export default function HomePage() {
           </div>
           <motion.a
             href="#about"
-            className="absolute bottom-6 left-1/2 z-10 inline-flex -translate-x-1/2 items-center gap-2 font-mono text-[10px] uppercase tracking-[0.32em] text-sand-300 sm:bottom-8"
+            className="absolute inset-x-0 bottom-8 z-10 mx-auto inline-flex w-fit items-center justify-center gap-3 rounded-lg border border-white/10 bg-[#111111]/65 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.32em] text-sand-300 shadow-soft backdrop-blur-xl transition duration-300 hover:border-[#EDE4D4]/35 hover:bg-[#1A1A1A]/80 hover:text-sand-100 sm:bottom-10"
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 2.5, ease: 'easeInOut', repeat: Infinity }}
           >
-            <ArrowDown className="h-4 w-4" />
+            <ArrowDown className="h-4 w-4 shrink-0" />
             Scroll to explore
           </motion.a>
         </motion.section>
@@ -255,7 +267,7 @@ export default function HomePage() {
         <div className="main-container">
         <motion.section
           id="about"
-          className="section-space particle-field"
+          className="section-space particle-field gsap-reveal"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
@@ -266,6 +278,32 @@ export default function HomePage() {
             title="Backend systems with AI built in"
             description="I am a passionate AI Automation Engineer and Backend Developer specializing in designing high-performance, secure, and scalable systems. My expertise lies in architecting end-to-end solutions that combine powerful Python backends with advanced AI capabilities to solve complex business challenges."
           />
+          <div className="grid gap-4 lg:grid-cols-[1fr_0.82fr]">
+            <motion.div variants={reveal} className="block-panel hover-glow">
+              <p className="text-lg leading-8 text-sand-200">
+                I am Abeeha Aamir, an AI Automation Engineer and Backend Systems Architect focused on building intelligent systems that remove operational drag without sacrificing engineering discipline.
+              </p>
+              <p className="mt-4 text-sm leading-7 text-sand-300">
+                My work sits at the intersection of Python, Django, AI orchestration, RAG pipelines, third-party integrations, and workflow automation. I care about systems that are fast to use, easy to reason about, observable in production, and strong enough to support real business decisions.
+              </p>
+            </motion.div>
+            <motion.div variants={reveal} className="block-panel hover-glow">
+              <div className="flex items-center gap-3">
+                <BrainCircuit className="h-5 w-5 text-sand-200" />
+                <p className="small-header">ENGINEERING PHILOSOPHY</p>
+              </div>
+              <div className="mt-5 space-y-3">
+                {philosophy.map((item, index) => (
+                  <div key={item} className="border border-white/10 bg-graphite-800/70 p-4">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-sand-400">
+                      NOTE.{String(index + 1).padStart(2, '0')}
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-sand-200">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
           <div className="grid gap-4 lg:grid-cols-[1fr_0.82fr]">
             <motion.div variants={reveal} className="block-panel hover-glow">
               <div className="flex items-center gap-3">
@@ -302,7 +340,7 @@ export default function HomePage() {
 
         <motion.section
           id="capabilities"
-          className="section-space"
+          className="section-space gsap-reveal"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
@@ -322,7 +360,7 @@ export default function HomePage() {
 
         <motion.section
           id="arsenal"
-          className="section-space"
+          className="section-space gsap-reveal"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
@@ -365,7 +403,7 @@ export default function HomePage() {
         </motion.section>
 
         <motion.section
-          className="section-space particle-field"
+          className="section-space particle-field gsap-reveal"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.18 }}
@@ -378,7 +416,7 @@ export default function HomePage() {
           />
           <div className="grid gap-4 lg:grid-cols-3">
             {timelineEntries.map((item) => (
-              <motion.article key={item.code} whileHover={{ y: -5 }} className="block-panel hover-glow">
+                <motion.article key={item.code} variants={reveal} whileHover={{ y: -5 }} className="block-panel hover-glow">
                 <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-sand-400">{item.code}</p>
                 <p className="mt-4 text-[11px] uppercase tracking-[0.24em] text-sand-400">{item.period}</p>
                 <h3 className="mt-4 text-lg font-semibold text-sand-100">{item.title}</h3>
@@ -391,7 +429,7 @@ export default function HomePage() {
 
         <motion.section
           id="showcase"
-          className="section-space"
+          className="section-space gsap-reveal"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.12 }}
@@ -410,7 +448,7 @@ export default function HomePage() {
         </motion.section>
 
         <motion.section
-          className="section-space particle-field"
+          className="section-space particle-field gsap-reveal"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.16 }}
@@ -453,8 +491,24 @@ export default function HomePage() {
         </motion.section>
 
         <motion.section
+          id="faq"
+          className="section-space gsap-reveal"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.16 }}
+          transition={{ staggerChildren: 0.08 }}
+        >
+          <SectionHeader
+            eyebrow="FAQ / SYSTEM NOTES"
+            title="Common questions"
+            description="Practical answers for founders and teams planning AI agents, automation infrastructure, Django backends, RAG pipelines, and business workflow systems."
+          />
+          <FAQAccordion />
+        </motion.section>
+
+        <motion.section
           id="contact"
-          className="section-space"
+          className="section-space gsap-reveal"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.18 }}
