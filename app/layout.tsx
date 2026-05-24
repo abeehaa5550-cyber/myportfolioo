@@ -43,7 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     '@type': 'Person',
     name: 'Abeeha Aamir',
     jobTitle: 'AI Automation Engineer & Backend Systems Architect',
-    email: 'mailto:abeehaa5550@gmail.com',
+    email: 'mailto:abeehaaamirr@gmail.com',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Bahawalpur',

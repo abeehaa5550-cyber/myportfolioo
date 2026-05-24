@@ -114,7 +114,7 @@ const academicLog = [
 ]
 
 const contactPoints = [
-  { icon: Radio, label: 'EMAIL', value: 'abeehaa5550@gmail.com' },
+  { icon: Radio, label: 'EMAIL', value: 'abeehaaamirr@gmail.com' },
   { icon: Phone, label: 'PHONE', value: '03298891430' },
   { icon: MapPin, label: 'LOCATION', value: 'Bahawalpur, Punjab, Pakistan' },
 ]
