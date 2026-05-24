@@ -28,15 +28,14 @@ export function Navbar() {
           </div>
         </a>
 
-        <nav className="hidden items-center gap-6 md:flex">
-          {navLinks.map((item) => (
-            <a key={item.href} href={item.href} className="nav-link">
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 lg:gap-8">
+          <nav className="hidden items-center gap-2 md:flex lg:gap-3">
+            {navLinks.map((item) => (
+              <a key={item.href} href={item.href} className="nav-link">
+                {item.label}
+              </a>
+            ))}
+          </nav>
           <a
             href="/Abeeha-aamir-resume.pdf"
             target="_blank"

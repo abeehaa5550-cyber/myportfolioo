@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import type { CSSProperties } from 'react'
 import {
-  ArrowDown,
+  ArrowRight,
   Bot,
   BrainCircuit,
   Code2,
@@ -16,7 +16,6 @@ import {
   Radio,
   RefreshCw,
   ServerCog,
-  ShieldCheck,
   Terminal,
   Workflow,
   Zap,
@@ -26,6 +25,7 @@ import { SocialRail } from '@components/SocialRail'
 import { Footer } from '@components/Footer'
 import { HeroScene } from '@components/HeroScene'
 import { AmbientEffects } from '@components/AmbientEffects'
+import { CustomCursor } from '@components/CustomCursor'
 import { ProjectCard } from '@components/ProjectCard'
 import { ContactForm } from '@components/ContactForm'
 import { ScrollProgress } from '@components/ScrollProgress'
@@ -34,14 +34,14 @@ import { featuredProjects } from '@data/projects'
 import { skillGroups } from '@data/skills'
 
 const capabilities = [
-  { code: 'SYS.01', name: 'Python Backend Systems', category: 'Backend Core', capacity: 95 },
-  { code: 'SYS.02', name: 'Django & Django REST Framework', category: 'API Architecture', capacity: 92 },
-  { code: 'SYS.03', name: 'AI Orchestration & RAG Pipelines', category: 'Intelligent Systems', capacity: 88 },
-  { code: 'SYS.04', name: 'Database Systems & Optimization', category: 'PostgreSQL / Redis', capacity: 90 },
-  { code: 'SYS.05', name: 'Workflow Automation', category: 'n8n / Webhooks', capacity: 93 },
-  { code: 'SYS.06', name: 'AI Voice Integrations', category: 'Voice Automation', capacity: 85 },
-  { code: 'SYS.07', name: 'Infrastructure & Deployment', category: 'DevOps Layer', capacity: 87 },
-  { code: 'SYS.08', name: 'Security', category: 'System Hardening', capacity: 89 },
+  { code: 'SYS.01', name: 'Python Backend Systems', category: 'Backend Core', capacity: 95, icon: FileCode2 },
+  { code: 'SYS.02', name: 'Django & Django REST Framework', category: 'API Architecture', capacity: 92, icon: ServerCog },
+  { code: 'SYS.03', name: 'AI Orchestration & RAG Pipelines', category: 'Intelligent Systems', capacity: 88, icon: BrainCircuit },
+  { code: 'SYS.04', name: 'Database Systems & Optimization', category: 'PostgreSQL / Redis', capacity: 90, icon: DatabaseIcon },
+  { code: 'SYS.05', name: 'Workflow Automation', category: 'n8n / Webhooks', capacity: 93, icon: Workflow },
+  { code: 'SYS.06', name: 'AI Voice Integrations', category: 'Voice Automation', capacity: 85, icon: Radio },
+  { code: 'SYS.07', name: 'Infrastructure & Deployment', category: 'DevOps Layer', capacity: 87, icon: Terminal },
+  { code: 'SYS.08', name: 'Security', category: 'System Hardening', capacity: 89, icon: KeyRound },
 ]
 
 const focusAreas = [
@@ -178,6 +178,8 @@ function SectionHeader({
 }
 
 function CapabilityCard({ item }: { item: (typeof capabilities)[number] }) {
+  const Icon = item.icon
+
   return (
     <motion.article
       variants={reveal}
@@ -187,7 +189,9 @@ function CapabilityCard({ item }: { item: (typeof capabilities)[number] }) {
     >
       <div className="flex items-center justify-between gap-4">
         <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-sand-400">{item.code}</p>
-        <ShieldCheck className="h-4 w-4 text-sand-300 transition group-hover:text-sand-100" />
+        <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-graphite-800 text-sand-200 transition group-hover:border-[#EDE4D4]/30 group-hover:text-sand-100">
+          <Icon className="h-4 w-4" />
+        </span>
       </div>
       <h3 className="mt-4 text-base font-semibold text-sand-100">{item.name}</h3>
       <p className="mt-2 text-[11px] uppercase tracking-[0.2em] text-sand-400">{item.category}</p>
@@ -212,6 +216,7 @@ export default function HomePage() {
     <>
       <ScrollProgress />
       <AmbientEffects />
+      <CustomCursor />
       <Navbar />
       <SocialRail />
       <main className="relative z-10">
@@ -252,24 +257,34 @@ export default function HomePage() {
               <p className="mx-auto mt-6 max-w-3xl text-base font-medium leading-8 text-sand-200 sm:text-xl lg:text-2xl">
                 AI Automation Engineer & Backend Systems Architect
               </p>
-              <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-sand-300 sm:text-base">
+              <p className="hero-subtitle mx-auto mt-4 max-w-2xl text-sm leading-7 text-sand-300 sm:text-base">
                 Building intelligent, scalable Python & Django systems powered by AI orchestration and automation.
               </p>
+              <div className="mt-12 flex flex-wrap items-center justify-center gap-4 sm:mt-14">
+                <motion.a
+                  href="#showcase"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="system-button system-button-primary min-w-[10.5rem]"
+                >
+                  <span>View My Work</span>
+                  <ArrowRight className="h-4 w-4" />
+                </motion.a>
+                <motion.a
+                  href="#contact"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="system-button min-w-[10.5rem]"
+                >
+                  <span>Get In Touch</span>
+                </motion.a>
+              </div>
             </motion.div>
 
           </div>
-          <motion.a
-            href="#about"
-            className="absolute inset-x-0 bottom-8 z-10 mx-auto inline-flex w-fit items-center justify-center gap-3 rounded-lg border border-white/10 bg-[#111111]/65 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.32em] text-sand-300 shadow-soft backdrop-blur-xl transition duration-300 hover:border-[#EDE4D4]/35 hover:bg-[#1A1A1A]/80 hover:text-sand-100 sm:bottom-10"
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2.5, ease: 'easeInOut', repeat: Infinity }}
-          >
-            <ArrowDown className="h-4 w-4 shrink-0" />
-            Scroll to explore
-          </motion.a>
         </motion.section>
 
-        <div className="main-container">
+        <div className="main-container lower-network-field">
         <motion.section
           id="about"
           className="section-space particle-field gsap-reveal"
@@ -518,14 +533,13 @@ export default function HomePage() {
           viewport={{ once: true, amount: 0.18 }}
           transition={{ staggerChildren: 0.08 }}
         >
+          <SectionHeader
+            eyebrow="05 / CONTACT"
+            title="Contact"
+          />
           <div className="grid gap-8 lg:grid-cols-[0.9fr_0.85fr] lg:items-start">
             <div>
-              <SectionHeader
-                eyebrow="CONTACT / START TRANSMISSION"
-                title="Start transmission"
-                description="Send the backend, AI, or automation system you want to build. Share the tools, workflow, constraints, and outcome you care about."
-              />
-              <div className="mt-6 grid gap-4">
+              <div className="grid gap-4">
                 {contactPoints.map((item) => {
                   const Icon = item.icon
                   return (

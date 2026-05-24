@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
 import { Send } from 'lucide-react'
@@ -12,6 +13,7 @@ type ContactFormValues = {
 }
 
 export function ContactForm() {
+  const [submitError, setSubmitError] = useState('')
   const {
     register,
     handleSubmit,
@@ -20,9 +22,28 @@ export function ContactForm() {
   } = useForm<ContactFormValues>()
 
   const onSubmit = async (data: ContactFormValues) => {
-    console.log('Contact inquiry:', data)
-    reset()
-    window.alert('Message received. I will follow up shortly!')
+    try {
+      setSubmitError('')
+      const response = await fetch('/api/transmission', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok) {
+        setSubmitError(result.error || 'Transmission failed. Please try again.')
+        return
+      }
+
+      reset()
+      window.alert('Transmission received. I will follow up shortly!')
+    } catch {
+      setSubmitError('Transmission failed. Please try again.')
+    }
   }
 
   return (
@@ -98,6 +119,7 @@ export function ContactForm() {
           <Send className="h-4 w-4" />
           {isSubmitting ? 'Sending...' : 'Send transmission'}
         </button>
+        {submitError ? <p className="text-center text-xs text-[#F5EDE4]">{submitError}</p> : null}
       </div>
     </motion.form>
   )
