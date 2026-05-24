@@ -22,6 +22,8 @@ import {
   Zap,
 } from 'lucide-react'
 import { Navbar } from '@components/Navbar'
+import { SocialRail } from '@components/SocialRail'
+import { Footer } from '@components/Footer'
 import { HeroScene } from '@components/HeroScene'
 import { AmbientEffects } from '@components/AmbientEffects'
 import { ProjectCard } from '@components/ProjectCard'
@@ -157,7 +159,7 @@ function SectionHeader({
 }: {
   eyebrow: string
   title: string
-  description: string
+  description?: string
 }) {
   return (
     <motion.div
@@ -168,7 +170,9 @@ function SectionHeader({
         <p className="section-index">{eyebrow}</p>
         <h2 className="mt-3 text-2xl font-semibold tracking-tight text-sand-100 sm:text-3xl">{title}</h2>
       </div>
-      <p className="max-w-3xl text-sm leading-7 text-sand-300 lg:ml-auto">{description}</p>
+      {description ? (
+        <p className="max-w-3xl text-sm leading-7 text-sand-300 lg:ml-auto">{description}</p>
+      ) : null}
     </motion.div>
   )
 }
@@ -209,7 +213,8 @@ export default function HomePage() {
       <ScrollProgress />
       <AmbientEffects />
       <Navbar />
-      <main className="relative z-10 pb-16">
+      <SocialRail />
+      <main className="relative z-10">
         <motion.section
           id="hero"
           initial={{ opacity: 0, y: 18 }}
@@ -218,7 +223,7 @@ export default function HomePage() {
           className="hero-stage relative flex min-h-screen w-full items-start justify-center overflow-hidden px-5 pb-28 pt-12 sm:px-8 sm:pt-14 lg:pt-16"
         >
           <HeroScene />
-          <div className="absolute inset-0 z-[1] bg-[#111111]/35" />
+          <div className="absolute inset-0 z-[1] bg-[#111111]/20" />
           <div className="absolute inset-x-0 top-0 z-[1] h-40 bg-gradient-to-b from-[#111111] to-transparent" />
           <div className="absolute inset-x-0 bottom-0 z-[1] h-56 bg-gradient-to-t from-[#111111] to-transparent" />
 
@@ -276,14 +281,13 @@ export default function HomePage() {
           <SectionHeader
             eyebrow="01 / ABOUT"
             title="Backend systems with AI built in"
-            description="I am a passionate AI Automation Engineer and Backend Developer specializing in designing high-performance, secure, and scalable systems. My expertise lies in architecting end-to-end solutions that combine powerful Python backends with advanced AI capabilities to solve complex business challenges."
           />
           <div className="grid gap-4 lg:grid-cols-[1fr_0.82fr]">
             <motion.div variants={reveal} className="block-panel hover-glow">
-              <p className="text-lg leading-8 text-sand-200">
+              <p className="max-w-2xl text-base font-medium leading-7 text-sand-200 sm:text-[1.05rem]">
                 I am Abeeha Aamir, an AI Automation Engineer and Backend Systems Architect focused on building intelligent systems that remove operational drag without sacrificing engineering discipline.
               </p>
-              <p className="mt-4 text-sm leading-7 text-sand-300">
+              <p className="mt-5 max-w-2xl text-sm leading-7 text-sand-300">
                 My work sits at the intersection of Python, Django, AI orchestration, RAG pipelines, third-party integrations, and workflow automation. I care about systems that are fast to use, easy to reason about, observable in production, and strong enough to support real business decisions.
               </p>
             </motion.div>
@@ -543,6 +547,7 @@ export default function HomePage() {
         </motion.section>
         </div>
       </main>
+      <Footer />
     </>
   )
 }

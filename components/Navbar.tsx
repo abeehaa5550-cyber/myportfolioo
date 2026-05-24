@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
-import { Menu, Radio, X } from 'lucide-react'
+import { FileText, Menu, X } from 'lucide-react'
 
 const navLinks = [
   { label: 'ABOUT', href: '#about' },
@@ -19,16 +18,9 @@ export function Navbar() {
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[#111111]/82 backdrop-blur-2xl">
       <div className="main-container flex items-center justify-between gap-4 py-4">
         <a href="#hero" className="group flex items-center gap-3">
-          <div className="relative h-11 w-11 overflow-hidden rounded-lg border border-white/10 bg-[#1F1F1F] transition duration-300 group-hover:border-[#EDE4D4]/45 group-hover:shadow-[0_0_34px_rgba(237,228,212,0.2)]">
-            <Image
-              src="/images/abeeha-logo.jpg"
-              alt="Abeeha Aamir logo"
-              fill
-              priority
-              sizes="44px"
-              className="object-cover opacity-95 transition duration-300 group-hover:scale-110 group-hover:opacity-100"
-            />
-            <span className="absolute inset-0 bg-[#EDE4D4]/0 transition group-hover:bg-[#EDE4D4]/5" />
+          <div className="relative flex h-11 w-11 items-center justify-center rounded-lg border border-[#EDE4D4]/20 bg-[#1F1F1F] text-lg font-black text-[#F5EDE4] shadow-[inset_0_0_18px_rgba(237,228,212,0.06)] transition duration-300 group-hover:-translate-y-0.5 group-hover:border-[#EDE4D4]/55 group-hover:text-white group-hover:shadow-[0_0_34px_rgba(237,228,212,0.22)]">
+            A
+            <span className="absolute inset-1 border border-[#EDE4D4]/10" />
           </div>
           <div>
             <p className="font-mono text-[9px] uppercase tracking-[0.35em] text-[#B8B8B0]">SYSTEM ID</p>
@@ -46,11 +38,13 @@ export function Navbar() {
 
         <div className="flex items-center gap-3">
           <a
-            href="#contact"
-            className="hidden items-center gap-2 rounded-lg bg-[#EDE4D4] px-4 py-2.5 text-xs font-semibold text-[#111111] transition duration-300 hover:-translate-y-0.5 hover:bg-[#F5EDE4] hover:shadow-[0_0_32px_rgba(237,228,212,0.24),0_18px_45px_rgba(237,228,212,0.14)] md:inline-flex"
+            href="/Abeeha-aamir-resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden items-center gap-2 rounded-lg border border-[#EDE4D4]/40 bg-[#EDE4D4] px-4 py-2.5 text-xs font-semibold text-[#111111] transition duration-300 hover:-translate-y-0.5 hover:border-[#F5EDE4] hover:bg-[#F5EDE4] hover:shadow-[0_0_32px_rgba(237,228,212,0.28),0_18px_45px_rgba(237,228,212,0.16)] md:inline-flex"
           >
-            <Radio className="h-4 w-4" />
-            START TRANSMISSION
+            <FileText className="h-4 w-4" />
+            Resume
           </a>
 
           <button
@@ -77,10 +71,12 @@ export function Navbar() {
               </a>
             ))}
             <a
-              href="#contact"
+              href="/Abeeha-aamir-resume.pdf"
+              target="_blank"
+              rel="noreferrer"
               className="block rounded-lg bg-[#EDE4D4] px-4 py-3 text-sm font-semibold text-[#111111] transition hover:bg-[#F5EDE4]"
             >
-              START TRANSMISSION
+              Resume
             </a>
           </div>
         </div>

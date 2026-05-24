@@ -11,7 +11,7 @@ export function Hero() {
         <HeroScene />
       </div>
 
-      <div className="absolute inset-0 bg-[#111111]/35" />
+      <div className="absolute inset-0 bg-[#111111]/20" />
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#111111] to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#111111] to-transparent" />
 
